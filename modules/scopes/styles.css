@@ -1,0 +1,16 @@
+body {
+	background: #eaeaea;
+}
+
+
+.square {
+	background-color: black;
+	width: 30%;
+	height: 500px;
+	margin: 0.3%;
+	float: left;
+}
+
+.check {
+	background-color: steelblue;
+}

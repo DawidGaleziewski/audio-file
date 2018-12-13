@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>alpha</title>
+
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="style1.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Mali:400,700&amp;subset=latin-ext" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	
+	
+</head>
+
+<body>
+
+
+</div>
+	
+	<!-- Page title -->
+	<div class="container">
+		<div class="jumbotron">
+		  <h1>
+		  <i class="fas fa-headphones"></i>
+		  Test your hearing
+		  </h1>
+
+		  <p>Select picture that is the source of sound</p>
+		  <button class="btn btn-lg btn-success">
+		  <i class="fas fa-recycle"></i>
+          Shuffle
+		  </button>
+
+		</div>
+	</div>
+
+
+
+<!-- First question -->
+<!-- question class is used to select those divs in js -->
+<div class="container question">
+
+	<div class="well well-lg">
+
+		<h2>Test1</h2>
+
+
+			<button class="play">Play sound</button>
+
+
+		<div class="row">
+
+
+			<form method="get">
+
+				<div class="form-group">
+
+
+					<div class="col-md-4 box">
+
+						<label class="btn btn-primary">
+							<img id="visual1" src="https://images.unsplash.com/photo-1529257414772-1960b7bea4eb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=99a036a823f65958ab245848f5091dd7&auto=format&fit=crop&w=1050&q=80" alt="..." class="img-thumbnail img-check">
+
+							<input type="radio" name="question1" value="val1" class="hidden" autocomplete="off">
+						</label>
+
+					</div>
+
+					<div class="col-md-4 box">
+						<label class="btn btn-primary">
+							<img id= "visual2" src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f35e7bc5ab7c860cef3684c704b7fe1f&auto=format&fit=crop&w=1050&q=80" alt="..." class="img-thumbnail img-check">
+
+							<input type="radio" name="question1" value="val2" class="hidden" autocomplete="off">
+						</label>
+					</div>
+
+					<div class="col-md-4 box">
+						<label class="btn btn-primary">
+							<img id= "visual3" src="https://images.unsplash.com/photo-1517855695349-6129cbc80a0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e62b4c36719749dde6c8baa38868bb93&auto=format&fit=crop&w=1052&q=80" alt="..." class="img-thumbnail img-check">
+
+							<input type="radio" name="question1" value="val3" class="hidden" autocomplete="off">
+						</label>
+					</div>
+
+
+
+				</div>
+
+					<div class="clearfix">
+						
+				</div>
+			
+
+			
+			</form>
+
+		</div>	
+	</div>
+</div>
+
+<!-- Second question -->
+<div class="container question">
+
+	<div class="well well-lg">
+
+		<h2>Test2</h2>
+
+		<audio class="controls" controls>
+
+			<source class="source" src="" type="audio/mpeg">
+
+		</audio> 
+
+		<div class="row">
+
+			<form method="get">
+
+				<div class="form-group" id= "formQuestion2">
+
+					<div class="col-md-4 box">
+
+						<label class="btn btn-primary">
+							<img id="visual1" src="https://images.unsplash.com/photo-1529257414772-1960b7bea4eb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=99a036a823f65958ab245848f5091dd7&auto=format&fit=crop&w=1050&q=80" alt="..." class="img-thumbnail img-check">
+
+							<input type="radio" name="question2" value="val1" class="hidden" autocomplete="off">
+						</label>
+
+					</div>
+
+					<div class="col-md-4 box">
+						<label class="btn btn-primary">
+							<img id= "visual2" src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f35e7bc5ab7c860cef3684c704b7fe1f&auto=format&fit=crop&w=1050&q=80" alt="..." class="img-thumbnail img-check">
+
+							<input type="radio" name="question2" value="val2" class="hidden" autocomplete="off">
+						</label>
+					</div>
+
+					<div class="col-md-4 box">
+						<label class="btn btn-primary">
+							<img id= "visual3" src="https://images.unsplash.com/photo-1517855695349-6129cbc80a0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e62b4c36719749dde6c8baa38868bb93&auto=format&fit=crop&w=1052&q=80" alt="..." class="img-thumbnail img-check">
+
+							<input type="radio" name="question2" value="val3" class="hidden" autocomplete="off">
+						</label>
+					</div>
+
+
+
+				</div>
+
+					<div class="clearfix">
+						
+				</div>
+			
+
+			
+			</form>
+
+		</div>	
+	</div>
+</div>
+
+
+
+
+
+		<!-- Finish button -->
+		<div class= "row">
+			<div class= "col-sm-6 col-sm-offset-1 col-md-3 col-md-offset-3">
+
+				<button id ="finish" class="btn btn-lg btn-primary finish">Finish</button>
+
+			</div>
+		</div>
+
+
+	<div class = "results">
+
+
+
+		<div class="container">
+
+					<h2>Results</h2>
+
+					<p>Find below information about the test resaults</p>
+					
+			<table class="table">
+				<tr>
+					<th>Test number</th>
+					<th>Result</th>
+					<th>Marked answer</th>
+					<th>Correct answer</th>
+				</tr>
+
+				<tr>
+					<td>1</td>
+					<td>Negative</td>
+					<td>Horse</td>
+					<td>Cat</td>
+				</tr>
+
+				<tr>
+					<td>2</td>
+					<td>Positive</td>
+					<td>Cat</td>
+					<td>Cat</td>
+				</tr>
+
+				<tr>
+					<td>3</td>
+					<td>Negative</td>
+					<td>Horse</td>
+					<td>Cat</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+
+
+<!-- Dropdowns won't work without jquery -->
+	<script
+  		src="https://code.jquery.com/jquery-2.2.4.js"
+  		integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  		crossorigin="anonymous">
+  	
+  	</script>
+
+
+ <!-- jquery won't work without js -->
+
+	<script 
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+		
+	</script>
+
+
+	<script type="text/javascript" src="script.js"></script>
+
+
+</body>
+</html>

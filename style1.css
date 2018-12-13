@@ -47,17 +47,6 @@ div {
 	margin-top: 20px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .input-hidden { /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
   position: absolute; /* Remove input from document flow */
@@ -72,6 +61,7 @@ div {
 .box{
     margin-bottom: 5px;
 }
+
 
 
 

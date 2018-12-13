@@ -1,59 +1,50 @@
 // Each question is placed in a container in DOM foe easier manipulation
 var containerQuestions = document.querySelectorAll(".question");
-
 // Keep track of rolled questions their media, and DOM objects they are assigned to
-// keep the audio in variables so we can access it on click
- var positionsArray = []
-
+	// Important! It keep the audio in variables so we can access it on click
+var positionsArray = []
 // Variables used for creating tags
 var tagLetter = ["a","b","c","d","e","f","g"]
 var tagTracker = 0
-
+// Used to store objects that won the game
+var audioVisualWinners
 // Array of objects. Each object contains sound and picture used.
 var audioVisual = [
 	{	tag: generateTag(),
 		audio: new Audio("media/cat.mp3"),
 		visual: "media/cat.jpeg",
 		winner: false,
-		description: "cat",
-		box: 0
+		description: "cat"
 	},
 	{
 		tag: generateTag(),
 		audio: new Audio("media/cricket.mp3"),
 		visual: "media/cricket.jpeg",
 		winner: false,
-		description: "cricket",
-		box: 0
+		description: "cricket"
 	},
 	{
 		tag: generateTag(),
 		audio: new Audio("media/horse.mp3"),
 		visual: "media/horse.jpeg",
 		winner: false,
-		description: "horse",
-		box: 0
+		description: "horse"
 	},
 	{
 		tag: generateTag(),
 		audio: new Audio("media/truck.mp3"),
 		visual: "media/truck.jpeg",
 		winner: false,
-		description: "truck",
-		box: 0
+		description: "truck"
 	},
 	{
 		tag: generateTag(),
 		audio: new Audio("media/dog.mp3"),
 		visual: "media/dog.jpeg",
 		winner: false,
-		description: "dog",
-		box: 0
+		description: "dog"
 	}
 ]
-
-// Used to store objects that won the game
-var audioVisualWinners
 
 // function for generating random tags for audioVisual array of objects
 function generateTag(){
@@ -72,7 +63,6 @@ function generateTag(){
 }
 
 // Actions after clicking finish button
-listenToFinish();
 function listenToFinish(){
 	var buttonFinish = document.getElementById("finish");
 
@@ -115,18 +105,23 @@ function checkAnswers(){
 	}		
 }
 
+// Loop thru all containers using previously designed functions
+	// Used after loading the page
+function bootstrapFunctions(containerQuestions){
+	for(var i = 0; i < containerQuestions.length; i++){
+		// use current container to generate questions and push it to array
+		positionsArray.push(rememberPositions(containerQuestions[i]));
+		// pass to addMedia function only current iteration of
+		addMedia(positionsArray[i], containerQuestions[i]);
+		toggleColor(containerQuestions[i]);
+		console.log(positionsArray[i]["winnerObject"])
 
-// Apply toggle color to all containers
-function applyToContainers(containers){
-	var localContainers = containers
-	for(var d = 0; d < localContainers.length; d++){
-		var squares = localContainers[d].querySelectorAll("img")
-		toggleColor(squares)
 	}
 }
 
 // Highlight clicked answer - Apply function to each square in container
-function toggleColor(squares){
+function toggleColor(container){
+	var squares = container.querySelectorAll("img")
 	for(var i = 0; i < squares.length; i++ ){
 		squares[i].classList.remove("check");
 		squares[i].addEventListener("click", function(){
@@ -142,19 +137,6 @@ function removeToggle(squares){
 		squares[e].classList.remove("check");
 	}
 }
-
-// Loop thru all containers using previously designed functions
-function bootstrapFunctions(containerQuestions){
-	for(var i = 0; i < containerQuestions.length; i++){
-		// use current container to generate questions and push it to array
-		positionsArray.push(rememberPositions(containerQuestions[i]));
-		// pass to addMedia function only current iteration of
-		addMedia(positionsArray[i], containerQuestions[i]);
-		console.log(positionsArray[i]["winnerObject"])
-
-	}
-}
-
 
 // Apply rolled media to their DOM objects
 function addMedia(positionsArray, container){
@@ -227,10 +209,10 @@ function random(howMany) {
 }
 
 
-// Core functions starting the logic of the app
+// functions run at start
+listenToFinish();
 bootstrapFunctions(containerQuestions);
-// it adds toggle to all squares - find better name!
-applyToContainers(containerQuestions);
+
 
 
 

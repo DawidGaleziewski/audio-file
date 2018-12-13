@@ -1,17 +1,15 @@
-
-// Create a object, holding a picture, sound and tag, acting as a hash table
-// Note: it will be better to: try to use array, try for each loop, add id(hash) to each object generated on load
-// Each question is placed in container, need to catch them in array to loop thru it.
+// Each question is placed in a container in DOM foe easier manipulation
 var containerQuestions = document.querySelectorAll(".question");
+
+// Keep track of rolled questions their media, and DOM objects they are assigned to
+// keep the audio in variables so we can access it on click
+ var positionsArray = []
+
+// Variables used for creating tags
 var tagLetter = ["a","b","c","d","e","f","g"]
 var tagTracker = 0
-// hardcoded sound for new button
-// if I change the source here it works on the button. I do not have to load it again
-// This should work fine if I create a new engine and apply it
 
-
-// new engine
-// to do: add randomly generated tags
+// Array of objects. Each object contains sound and picture used.
 var audioVisual = [
 	{	tag: generateTag(),
 		audio: new Audio("media/cat.mp3"),
@@ -54,9 +52,10 @@ var audioVisual = [
 	}
 ]
 
+// Used to store objects that won the game
 var audioVisualWinners
 
-
+// function for generating random tags for audioVisual array of objects
 function generateTag(){
 	var tag = ""
 	for(var i = 0; i < 5; i++){
@@ -72,7 +71,7 @@ function generateTag(){
 	return tag
 }
 
-// actions after clicking finish button
+// Actions after clicking finish button
 listenToFinish();
 function listenToFinish(){
 	var buttonFinish = document.getElementById("finish");
@@ -88,12 +87,12 @@ function listenToFinish(){
 	
 }
 
-// show hidden table
+// Show hidden table with results
 function showTable(){
 	document.querySelector(".results").classList.remove("input-hidden");
 }
 
-// update table with gathered data
+// Update hidden table with results of the test
 function updateTable(){
 	// get tables dom
 	var table = document.querySelector(".results")
@@ -106,9 +105,7 @@ function updateTable(){
 	}
 }
 
-
-// Check if the answer is correct, after user selects it and clicks finish
-// Note: beta, change after adding more divs
+// Criteria used for evaluating each question if its correct, and update objects
 function checkAnswers(){
 	for(var i = 0; i < positionsArray.length; i++){
 		if(positionsArray[i].winnerBox.classList.contains("check")){
@@ -119,7 +116,7 @@ function checkAnswers(){
 }
 
 
-// Highlight only clicked picture
+// Apply toggle color to all containers
 function applyToContainers(containers){
 	var localContainers = containers
 	for(var d = 0; d < localContainers.length; d++){
@@ -128,6 +125,7 @@ function applyToContainers(containers){
 	}
 }
 
+// Highlight clicked answer - Apply function to each square in container
 function toggleColor(squares){
 	for(var i = 0; i < squares.length; i++ ){
 		squares[i].classList.remove("check");
@@ -138,18 +136,14 @@ function toggleColor(squares){
 	}
 }
 
+// Remove highlight if other picture is clicked
 function removeToggle(squares){
 	for(var e = 0; e < squares.length; e++){
 		squares[e].classList.remove("check");
 	}
 }
 
-// Toggle hihlight when picture is clicked and remove it from the rest
-
-// variable for test only
-// var positions =  rememberPositions(containerQuestions[0])
-
-// loop thru all containers using previously designed functions
+// Loop thru all containers using previously designed functions
 function bootstrapFunctions(containerQuestions){
 	for(var i = 0; i < containerQuestions.length; i++){
 		// use current container to generate questions and push it to array
@@ -162,29 +156,20 @@ function bootstrapFunctions(containerQuestions){
 }
 
 
-// Apply rolled media to their DOM
+// Apply rolled media to their DOM objects
 function addMedia(positionsArray, container){
-	// this will have to be iterated on array so it applies to each container
-	// correct pictures are not getting replaced
 	positionsArray["box1"].src =  positionsArray["rolledMedia"][0]["visual"];
 	positionsArray["box2"].src =  positionsArray["rolledMedia"][1]["visual"];
 	positionsArray["box3"].src =  positionsArray["rolledMedia"][2]["visual"];
-	// adding sound
-		// find play button
+
+	// Adding sound to play button
 	var button = container.querySelector(".play");
 	button.addEventListener("click", function(){
 		positionsArray["winnerObject"]["audio"].play()
 	})
 }
 
-
-// keep the audio in variable so we can access it on click
- var positionsArray = []
-
- // this is for test but will need to be iterated on each container
- 
-
-// combine rolled objects with DOM objects for easy applying letter
+// Combine rolled objects with DOM objects for easy applying letter
  function rememberPositions(containerQuestion) {
  	var questionsBoxes = containerQuestion.querySelectorAll("img");
  	var rolledAudioVisualObjects = setWinnerLoser();
@@ -197,7 +182,6 @@ function addMedia(positionsArray, container){
  		box2: questionsBoxes[1],
  		box3: questionsBoxes[2],
  		correct: false
-
  	}
  	positions.winnerBox = positions[positions.winnerBox]
 
@@ -215,7 +199,7 @@ function setWinnerLoser(){
 }
 
 
-// rolll 3 posible answars for question
+// Roll 3 posible answars for question
 function rollQuestionsArray(){
 	var questions = [];
 	// roll 3 questions
@@ -225,8 +209,8 @@ function rollQuestionsArray(){
 	return questions
 }
 
+// Make sure there are no duplicates of rolled questions in each container
 function rollControl(inputArray, outputArray){
-
 	var rolledItem = inputArray[random(inputArray.length)]
 
 			// make sure it does not exist in this array, or was not chosen as winner
@@ -243,11 +227,9 @@ function random(howMany) {
 }
 
 
-
-
-
 // Core functions starting the logic of the app
 bootstrapFunctions(containerQuestions);
+// it adds toggle to all squares - find better name!
 applyToContainers(containerQuestions);
 
 

@@ -88,7 +88,7 @@ body {
 	}
 }
 
-@media(max-width: 970px){
+@media(max-width: 1000px){
 	.question .well {
 		padding: 30px 30px 15px 30px;
 		margin-top: 30px;

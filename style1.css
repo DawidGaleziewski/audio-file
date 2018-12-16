@@ -17,7 +17,7 @@ body {
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	text-align: center;
 	padding: 100px;
-	background: #008f95;
+	background-color: #02c8a7;
 	border: 2px #119f96 solid;
 	border-radius: 10px;
 	-webkit-box-shadow: 2px 2px 10px -1px rgba(17,159,150,1);
@@ -37,7 +37,8 @@ body {
 
 .question .well {
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	background-color: #02c8a7;
+	
+	background-color: #008f95;
 	padding: 30px;
 	color: white;
 	border: none;
@@ -89,7 +90,7 @@ body {
 
 @media(max-width: 970px){
 	.question .well {
-		padding: 30px;
+		padding: 30px 30px 15px 30px;
 		margin-top: 30px;
 	}
 

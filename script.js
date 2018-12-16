@@ -1,15 +1,14 @@
 // Each question is placed in a container in DOM foe easier manipulation
-var containerQuestions = document.querySelectorAll(".question");
+let questionDivs = document.querySelectorAll(".question");
 // Keep track of rolled questions their media, and DOM objects they are assigned to
 	// Important! It keep the audio in variables so we can access it on click
-var positionsArray = []
+let rolledAudioVisualObjects = [];
 // Variables used for creating tags
-var tagLetter = ["a","b","c","d","e","f","g"]
-var tagTracker = 0
-// Used to store objects that won the game
-var audioVisualWinners
-// Array of objects. Each object contains sound and picture used.
-var audioVisual = [
+const tagLetter = ["a","b","c","d","e","f","g"];
+let tagTracker = 0;
+// Array of objects. Each object contains sound and picture tha can be used in the program.
+// !Tag is not used in program so far, remove if it won't be used at the end
+let audioVisualMedia = [
 	{	tag: generateTag(),
 		audio: new Audio("media/1_beben_4180ms.wav"),
 		visual: "media/1_beben_4180ms.jpg",
@@ -60,29 +59,47 @@ var audioVisual = [
 		winner: false,
 		description: "tWood"
 	}
-]
+];
+
+// tracks which question should be currently in use
+let questionTracker = 0;
+
+let nextButton = document.getElementById("next");
+nextButton.addEventListener("click", function(){
+	questionTracker++
+	hideNotUsedQuestions()
+})
+
+// hide questions that are not beeing answered currently
+function hideNotUsedQuestions(){
+	var notUsedQuestions = questionDivs;
+	let usedQuestion = questionDivs[questionTracker];
+	for(let i = 0; i < notUsedQuestions.length; i++){
+		notUsedQuestions[i].classList.add("input-hidden");
+	}
+	usedQuestion.classList.remove("input-hidden")
+}
 
 // function for generating random tags for audioVisual array of objects
 function generateTag(){
-	var tag = ""
-	for(var i = 0; i < 5; i++){
-		tag += tagLetter[random(6)]
+	let tag = ""
+	for(let i = 0; i < 5; i++){
+		tag += tagLetter[random(6)];
 	}
 
-	for(var e = 0; e < 5; e++){
-		tag += [random(6)]
+	for(let e = 0; e < 5; e++){
+		tag += [random(6)];
 	}
 
-	tag += tagTracker
-	tagTracker++
-	return tag
+	tag += tagTracker;
+	tagTracker++;
+	return tag;
 }
 
 // Actions after clicking finish button
-function listenToFinish(){
-	var buttonFinish = document.getElementById("finish");
-
-	buttonFinish.addEventListener("click", function(){
+function addFunctionsToFinishButton(){
+	let finishButton = document.getElementById("finish");
+	finishButton.addEventListener("click", function(){
 		// check answers so far
 		checkAnswers();
 		// Update table data
@@ -101,21 +118,21 @@ function showTable(){
 // Update hidden table with results of the test
 function updateTable(){
 	// get tables dom
-	var table = document.querySelector(".results")
+	let table = document.querySelector(".results");
 	// must startt from second on loop as first is header
-	var rows = table.querySelectorAll("tr")
-	for(var i = 1; i < rows.length; i++){
-		var tableData = rows[i].querySelectorAll("td");
-		tableData[1].innerText = positionsArray[i - 1]["correct"];
-		tableData[2].innerText = positionsArray[i - 1]["winnerObject"]["description"];
+	let rows = table.querySelectorAll("tr");
+	for(let i = 1; i < rows.length; i++){
+		let tableData = rows[i].querySelectorAll("td");
+		tableData[1].innerText = rolledAudioVisualObjects[i - 1]["correct"];
+		tableData[2].innerText = rolledAudioVisualObjects[i - 1]["winnerObject"]["description"];
 	}
 }
 
 // Criteria used for evaluating each question if its correct, and update objects
 function checkAnswers(){
-	for(var i = 0; i < positionsArray.length; i++){
-		if(positionsArray[i].winnerBox.classList.contains("check")){
-			positionsArray[i].correct = true
+	for(let i = 0; i < rolledAudioVisualObjects.length; i++){
+		if(rolledAudioVisualObjects[i].winnerBox.classList.contains("check")){
+			rolledAudioVisualObjects[i].correct = true;
 		}
 
 	}		
@@ -123,56 +140,54 @@ function checkAnswers(){
 
 // Loop thru all containers using previously designed functions
 	// Used after loading the page
-function bootstrapFunctions(containerQuestions){
-	for(var i = 0; i < containerQuestions.length; i++){
+function startProgram(questionDivs){
+	for(let i = 0; i < questionDivs.length; i++){
 		// use current container to generate questions and push it to array
-		positionsArray.push(rememberPositions(containerQuestions[i]));
+		rolledAudioVisualObjects.push(updateAudioVisualMediaInformation(questionDivs[i]));
 		// pass to addMedia function only current iteration of
-		addMedia(positionsArray[i], containerQuestions[i]);
-		toggleColor(containerQuestions[i]);
-		console.log(positionsArray[i]["winnerObject"])
-
+		addMedia(rolledAudioVisualObjects[i], questionDivs[i]);
+		toggleColor(questionDivs[i]);
 	}
 }
 
 // Highlight clicked answer - Apply function to each square in container
 function toggleColor(container){
-	var squares = container.querySelectorAll("img")
-	for(var i = 0; i < squares.length; i++ ){
-		squares[i].classList.remove("check");
-		squares[i].addEventListener("click", function(){
-			removeToggle(squares);
+	let answerImage = container.querySelectorAll("img")
+	for(let i = 0; i < answerImage.length; i++ ){
+		answerImage[i].classList.remove("check");
+		answerImage[i].addEventListener("click", function(){
+			removeToggledColor(answerImage);
 			this.classList.add("check");
 		})
 	}
 }
 
 // Remove highlight if other picture is clicked
-function removeToggle(squares){
-	for(var e = 0; e < squares.length; e++){
-		squares[e].classList.remove("check");
+function removeToggledColor(answerImage){
+	for(let e = 0; e < answerImage.length; e++){
+		answerImage[e].classList.remove("check");
 	}
 }
 
 // Apply rolled media to their DOM objects
-function addMedia(positionsArray, container){
-	positionsArray["box1"].src =  positionsArray["rolledMedia"][0]["visual"];
-	positionsArray["box2"].src =  positionsArray["rolledMedia"][1]["visual"];
-	positionsArray["box3"].src =  positionsArray["rolledMedia"][2]["visual"];
+function addMedia(rolledAudioVisualObject, container){
+	rolledAudioVisualObject["box1"].src =  rolledAudioVisualObject["rolledMedia"][0]["visual"];
+	rolledAudioVisualObject["box2"].src =  rolledAudioVisualObject["rolledMedia"][1]["visual"];
+	rolledAudioVisualObject["box3"].src =  rolledAudioVisualObject["rolledMedia"][2]["visual"];
 
 	// Adding sound to play button
-	var button = container.querySelector(".play");
-	button.addEventListener("click", function(){
-		positionsArray["winnerObject"]["audio"].play()
+	let playButton = container.querySelector(".play");
+	playButton.addEventListener("click", function(){
+		rolledAudioVisualObject["winnerObject"]["audio"].play()
 	})
 }
 
 // Combine rolled objects with DOM objects for easy applying letter
- function rememberPositions(containerQuestion) {
- 	var questionsBoxes = containerQuestion.querySelectorAll("img");
- 	var rolledAudioVisualObjects = setWinnerLoser();
- 	var winnerObjectIndex = rolledAudioVisualObjects.findIndex(x => x.winner == "true");
- 	var positions = {
+ function updateAudioVisualMediaInformation(containerQuestion) {
+ 	let questionsBoxes = containerQuestion.querySelectorAll("img");
+ 	let rolledAudioVisualObjects = setWinningLosingAnswers();
+ 	let winnerObjectIndex = rolledAudioVisualObjects.findIndex(x => x.winner == "true");
+ 	let positions = {
  		winnerObject: rolledAudioVisualObjects.find(x => x.winner === "true"),
  		winnerBox: "box" + (winnerObjectIndex + 1),
  		rolledMedia: rolledAudioVisualObjects,
@@ -187,33 +202,32 @@ function addMedia(positionsArray, container){
  } 
 
 // Select the winner object - make sure it won't be used anymore
-function setWinnerLoser(){
-	var questionsLocal = rollQuestionsArray();
-	var winnerIndex = random(3)
+function setWinningLosingAnswers(){
+	let questionsLocal = rollAnswersArray();
+	let winnerIndex = random(3)
 	questionsLocal[winnerIndex].winner = "true"
-	audioVisual.splice(audioVisual.indexOf(questionsLocal[winnerIndex]),1)
+	audioVisualMedia.splice(audioVisualMedia.indexOf(questionsLocal[winnerIndex]),1)
 	// remove this item from all items so it wont be selected again in the future
 	return questionsLocal
 }
 
 
 // Roll 3 posible answars for question
-function rollQuestionsArray(){
-	var questions = [];
+function rollAnswersArray(){
+	let questions = [];
 	// roll 3 questions
-	for(var i = 0; i < 3; i++){
-		questions.push(rollControl(audioVisual,questions))
+	for(let i = 0; i < 3; i++){
+		questions.push(rollDuplicateControl(audioVisualMedia,questions))
 	}
 	return questions
 }
 
 // Make sure there are no duplicates of rolled questions in each container
-function rollControl(inputArray, outputArray){
-	var rolledItem = inputArray[random(inputArray.length)]
+function rollDuplicateControl(inputArray, outputArray){
+	let rolledItem = inputArray[random(inputArray.length)]
 
 			// make sure it does not exist in this array, or was not chosen as winner
 			while (outputArray.indexOf(rolledItem) !== -1 ){
-				console.log(rolledItem.winner)
 				rolledItem = inputArray[random(inputArray.length)];
 			} 
 return rolledItem;
@@ -224,10 +238,12 @@ function random(howMany) {
 	return Math.floor((Math.random() * howMany) + 0)
 }
 
-
 // functions run at start
-listenToFinish();
-bootstrapFunctions(containerQuestions);
+hideNotUsedQuestions();
+startProgram(questionDivs);
+addFunctionsToFinishButton();
+
+
 
 
 

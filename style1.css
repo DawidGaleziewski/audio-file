@@ -29,6 +29,26 @@ body {
  	font-weight: 700;
 }
 
+.jumbotron input{
+	font-size: 25px;
+	font-weight: bold;
+	color: #f53240;
+
+}
+
+
+.arrow-left {
+	width: 20px;
+	padding: 20px;
+	background: black;
+}
+
+.arrow-right {
+	width: 20px;
+	padding: 20px;
+	background: black;
+}
+
 .question .well {
 	background-color: #008f95;
 	padding: 30px;
@@ -186,6 +206,9 @@ body {
 .results {
 	font-size: 2em;
 }
+
+/*style for button*/
+
 
 
 

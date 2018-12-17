@@ -3,14 +3,19 @@ https://audio-file-test.herokuapp.com/
 
 To do:
 Next:
-[]Load ony one question at a time
+#Find way to style the input button
+
+
+[x]Load ony one question at a time
+#make code so that it will need only one div, rest should be remembered in the app
+#after checking the answer and pressing the next button current question should be evaluated and than new question loaded
 
 Refine js code. according to:
 https://github.com/airbnb/javascript
 #New features:
 []Roll new media using shuffle button
 []Add new media for animal sounds
-[]Add option to chose number of questions per test
+[x]Add option to chose number of questions per test
 
 #Endhance:
 [x]Make table with results more readable

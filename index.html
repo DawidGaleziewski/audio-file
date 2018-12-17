@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="style1.css">
 	<link href="https://fonts.googleapis.com/css?family=Mali:400,700&amp;subset=latin-ext" rel="stylesheet">	
+
 </head>
 
 <body>
@@ -19,10 +20,14 @@
 		  </h1>
 
 		  <p>Select picture that is the source of sound</p>
-		  <button class="btn btn-lg btn-success">
-		  	<i class="fas fa-recycle"></i>
-          	Shuffle
-		  </button>
+
+			<input id = "numberOfQuestions" type="number" value = "1" min= "1" max ="5">
+
+
+		  <div>
+		  	<button class= "btn-success btn-lg" id ="confirmNumberOfQuestions">Confirm</button>
+		  </div>
+
 		</div>
 	</div>
 
@@ -73,96 +78,6 @@
 
 <!-- Second question -->
 	<!-- question class is used to select those divs in js -->
-	<div class="container question">
-		<div class="well well-lg">
-			<h2>Test2</h2>
-
-			<div class = "play-container row">
-				<button class="play">
-					Play sound
-				</button>
-			</div>
-
-
-			<div class="row">
-				<form method="get">
-					<div class="form-group">
-						<div class="col-md-4 box">
-
-							<label>
-								<img src="media/error.jpg" alt="Error" class="img-thumbnail">
-
-								<input type="radio" name="question1" class="hidden" autocomplete="off">
-							</label>
-						</div>
-						<div class="col-md-4 box">
-							<label>
-								<img src="media/error.jpg" alt="Error" class="img-thumbnail">
-
-								<input type="radio" name="question1" class="hidden" autocomplete="off">
-							</label>
-						</div>
-						<div class="col-md-4 box">
-							<label>
-								<img src="media/error.jpg" alt="Error" class="img-thumbnail">
-
-								<input type="radio" name="question1" class="hidden" autocomplete="off">
-							</label>
-						</div>
-					</div>
-						<div class="clearfix">
-					</div>
-				</form>
-			</div>	
-		</div>
-	</div>
-
-
-	<!-- 3rd question question -->
-	<!-- question class is used to select those divs in js -->
-	<div class="container question">
-		<div class="well well-lg">
-			<h2>Test3</h2>
-
-			<div class = "play-container row">
-				<button class="play">
-					Play sound
-				</button>
-			</div>
-
-
-			<div class="row">
-				<form method="get">
-					<div class="form-group">
-						<div class="col-md-4 box">
-
-							<label>
-								<img src="media/error.jpg" alt="Error" class="img-thumbnail">
-
-								<input type="radio" name="question1" class="hidden" autocomplete="off">
-							</label>
-						</div>
-						<div class="col-md-4 box">
-							<label>
-								<img src="media/error.jpg" alt="Error" class="img-thumbnail">
-
-								<input type="radio" name="question1" class="hidden" autocomplete="off">
-							</label>
-						</div>
-						<div class="col-md-4 box">
-							<label>
-								<img src="media/error.jpg" alt="Error" class="img-thumbnail">
-
-								<input type="radio" name="question1" class="hidden" autocomplete="off">
-							</label>
-						</div>
-					</div>
-						<div class="clearfix">
-					</div>
-				</form>
-			</div>	
-		</div>
-	</div>
 
 		<div class = "nextButtonRow">
 				<button id ="next" class= "btn-success btn-lg">Next</button>
@@ -219,8 +134,8 @@
 		
 	</script>
 
-
 	<script type="text/javascript" src="script.js"></script>
+
 
 
 </body>

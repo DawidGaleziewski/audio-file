@@ -3,7 +3,11 @@ https://audio-file-test.herokuapp.com/
 
 To do:
 Next:
-#Find way to style the input button
+[] Remove event listener from play button after pressing next and finish
+	[] store this function in a variable to use removeEventListener
+
+
+[x]#Find way to style the input button
 
 
 [x]Load ony one question at a time

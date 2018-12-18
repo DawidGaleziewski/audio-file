@@ -1,0 +1,89 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+ 	-webkit-appearance: none;
+  	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.parent {
+	background: steelblue;
+	padding: 10px;
+	width:500px;
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+}
+
+/*52 156*/
+.number-button{
+
+	width: 152px;
+}
+
+.number-button input{
+	width: 50px;
+	height: 52px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	float: left;
+	border: 2px solid black;
+}
+
+#number-button-down {
+	width: 50px;
+	background: #f53240;
+	float: left;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 13px;
+	margin-right: 1px;
+	border: 2px solid black;
+	border-radius: 5px 0 0 0;
+}
+
+#number-button-down:hover {
+	background: white;
+	cursor: pointer;
+}
+
+#number-button-up {
+	width: 50px;
+	background: #3AAD57;
+	float: left;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 13px;
+	margin-left: 1px;
+	border: 2px solid black;
+}
+
+#number-button-up:hover {
+	background: white;
+	cursor: pointer;
+}
+
+.glyphicon-minus {
+	font-size: 15px;
+	padding: 0px;
+}
+
+#confirm {
+	margin-top: 1px;
+	width: 152px;
+	height: 50px;
+	border: 2px solid #e9b000;
+	border-radius: 0 0 5px 5px;
+	background: white;
+
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #e9b000;
+}
+
+
+#confirm:hover {
+	background: #e9b000;
+	color: white;
+}

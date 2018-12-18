@@ -6,6 +6,7 @@
 	<title>alpha</title>
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="style1.css">
+	<link rel="stylesheet" type="text/css" href="button.css">
 	<link href="https://fonts.googleapis.com/css?family=Mali:400,700&amp;subset=latin-ext" rel="stylesheet">	
 
 </head>
@@ -19,21 +20,29 @@
 		  	Test your hearing
 		  </h1>
 
-		  <p>Select picture that is the source of sound</p>
+		   <p>Select picture that is the source of sound</p>
 
-			<input id = "numberOfQuestions" type="number" value = "1" min= "1" max ="5">
+			<div class = "number-button"> 
+				<div id = "number-button-down">
+					<span class="glyphicon glyphicon-minus"></span>
+				</div>
+				<input id="numberOfQuestions" type="number" value = "1" min= "1" max ="5">
+				<div id = "number-button-up">
+					<span class= "glyphicon glyphicon-plus"></span>
+				</div>
+				<div style="clear:both"></div>
+				<button id="confirmNumberOfQuestions">Start test</button>
+			</div>
 
+<!-- 			<input id = "numberOfQuestions" type="number" value = "1" min= "1" max ="5"> -->
 
-		  <div>
-		  	<button class= "btn-success btn-lg" id ="confirmNumberOfQuestions">Confirm</button>
-		  </div>
 
 		</div>
 	</div>
 
 	<!-- First question -->
 	<!-- question class is used to select those divs in js -->
-	<div class="container question">
+	<div class="container question input-hidden">
 		<div class="well well-lg">
 			<h2>Test1</h2>
 
@@ -78,9 +87,9 @@
 
 <!-- Second question -->
 	<!-- question class is used to select those divs in js -->
-
+<div id = "button-container" class="input-hidden">
 		<div class = "nextButtonRow">
-				<button id ="next" class= "btn-success btn-lg">Next</button>
+				<button id ="next" class= "btn-success btn-lg ">Next</button>
 		</div>
 
 		<!-- Finish button -->
@@ -88,7 +97,7 @@
 		<div class = "finishButtonRow">
 			<button id ="finish" class= "btn-success btn-lg">Finish</button>
 		</div>
-
+</div>
 
 
 	<div class = "results input-hidden">
@@ -135,6 +144,7 @@
 	</script>
 
 	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="button.js"></script>
 
 
 

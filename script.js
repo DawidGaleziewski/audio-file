@@ -65,6 +65,8 @@ let audioVisualMedia = [
 	}
 ];
 
+let navigateButtonGroup = document.getElementById("button-container")
+
 // tracks which question should be currently in use
 // let questionTracker = 0;
 
@@ -106,11 +108,17 @@ function generateTag(){
 let buttonConfirm = document.getElementById("confirmNumberOfQuestions");
 let numberOfQuestionsInput = document.getElementById("numberOfQuestions");
 buttonConfirm.addEventListener("click", function(){
-	numberOfQuestions = numberOfQuestionsInput.value
-	startProgram()
+	numberOfQuestions = numberOfQuestionsInput.value;
+	startProgram();
+	questionDiv.classList.remove("input-hidden");
+	navigateButtonGroup.classList.remove("input-hidden");
 })
 
-
+// stop currently playing sound
+function stopCurrentSound(){
+	rolledAudioVisualObjects[currentQuestion]["winnerObject"]["audio"].pause();
+	rolledAudioVisualObjects[currentQuestion]["winnerObject"]["audio"].currentTime = 0;
+}
 
 // Add conditions so that next button is hidden when there are no more questions and finish button is shown
 function swapNextAndFinishButtons(){
@@ -177,7 +185,6 @@ function checkAnswer(){
 	if(rolledAudioVisualObjects[currentQuestion].winnerBox.classList.contains("check")){
 		rolledAudioVisualObjects[currentQuestion].correct = true;
 	}
-	console.log(rolledAudioVisualObjects[currentQuestion].correct)
 }
 
 // !This needs to be changed as we no longer have multiple divs

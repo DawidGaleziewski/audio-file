@@ -132,6 +132,7 @@ function swapNextAndFinishButtons(){
 
 	let finishButton = document.getElementById("finish");
 	finishButton.addEventListener("click", function(){
+		stopCurrentSound()
 		// check answers so far
 		checkAnswer();
 		// Update table data
@@ -164,6 +165,7 @@ var nextButton = document.querySelector("#next")
 
 // this will now needed to use more often, after each next button
 nextButton.addEventListener("click", function(){
+	stopCurrentSound()
 	// check current answer
 	checkAnswer();
 	// get rid of toggled image effec
@@ -232,6 +234,9 @@ function removeToggledColor(answerImage){
 // !This needs to be rebuild so that it can be used everytime after next button is clicked
 // Apply rolled media to their DOM objects
 // !this accepts only one argument now, no need to change containers
+
+
+
 function addMedia(rolledAudioVisualObject){
 	rolledAudioVisualObject["box1"].src =  rolledAudioVisualObject["rolledMedia"][0]["visual"];
 	rolledAudioVisualObject["box2"].src =  rolledAudioVisualObject["rolledMedia"][1]["visual"];
@@ -239,10 +244,16 @@ function addMedia(rolledAudioVisualObject){
 
 	// Adding sound to play button
 	let playButton = questionDiv.querySelector(".play");
-	playButton.addEventListener("click", function(){
-		rolledAudioVisualObject["winnerObject"]["audio"].play()
-	})
+	
+	playButton.addEventListener("click", playCurrentSound)
 }
+
+function playCurrentSound(){
+	rolledAudioVisualObjects[currentQuestion]["winnerObject"]["audio"].play()
+};
+
+// for testing
+var playButton = questionDiv.querySelector(".play");
 
 // Combine rolled objects with DOM objects for easy applying letter
  function updateAudioVisualMediaInformation(questionDiv) {
